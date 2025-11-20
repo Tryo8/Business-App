@@ -1,0 +1,14 @@
+
+
+.display-1{
+    font-family: monospace;
+}
+.display-1::before{
+    
+    content: "4";
+    color: #2626a9b2;
+}
+.display-1::after{
+    content: "4";
+    color:#2626a9b2;
+}

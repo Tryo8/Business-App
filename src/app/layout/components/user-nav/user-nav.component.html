@@ -1,0 +1,29 @@
+<div class="card shadow-1 border-0 mb-3 p-0">
+    <p-menubar styleClass="surface-50 py-1 rounded-0" [model]="navItems">
+        <ng-template #start>
+            <h5>kys</h5>
+        </ng-template>
+        <ng-template #item let-item let-root="root">
+            <a [routerLink]="item.routerLink" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active" pRipple class="flex items-center p-menubar-item-link">
+                <span [style]="item.style" [class]="item.icon"></span>
+                <span>{{ item.label }}</span>
+            
+                <span *ngIf="item.shortcut" class="ml-auto border border-surface rounded bg-emphasis text-muted-color text-xs p-1">{{ item.shortcut }}</span>
+                <i *ngIf="item.items" [ngClass]="['ml-auto pi', root ? 'pi-angle-down' : 'pi-angle-right']"></i>
+            </a>
+        </ng-template>
+        <ng-template #end>
+
+              <p-splitbutton  dropdownIcon="pi pi-ellipsis-v" severity="secondary" label="user" rounded severity="secondary" [model]="userItems" >
+                @if(user){
+                    <ng-template  pTemplate="content">
+                        <img [src]="user.profile.image ? user.profile.image : 'https://cdn-icons-png.flaticon.com/128/9131/9131529.png'"  class="border border-1 rounded-circle" alt="Save" width="25" height="25">
+                        {{ user.profile.username }}
+                    </ng-template>
+                }
+              </p-splitbutton>
+        </ng-template>
+    </p-menubar>
+</div>
+
+<p-confirmdialog />

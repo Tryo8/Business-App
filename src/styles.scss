@@ -1,0 +1,48 @@
+/* You can add global styles to this file, and also import other style files */
+@forward './app/styles/customClass';
+@forward './app/styles/components.scss';
+@forward './app/styles/themeChange.scss';
+@import "primeicons/primeicons.css";
+@import "primeflex/primeflex.css";
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap');
+
+
+small{
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+}
+
+.small{
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+
+}
+
+::-webkit-scrollbar {
+    width: 5px;          
+    height: 1px;         
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;  
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #007bffb0; 
+    border-radius: 3px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: #007bffc9;
+}
+
+
+.container{
+    margin-left: 5rem;
+    margin-right: 5rem;
+    margin-top: 2rem;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}

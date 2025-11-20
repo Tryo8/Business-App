@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap');
+
+.user-list {
+  padding: 20px;
+}
+
+.loading, .error, .no-users {
+  text-align: center;
+  padding: 20px;
+  font-size: 18px;
+}
+
+.error {
+  color: #d32f2f;
+}
+
+.users-grid {
+  border: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.user-card {
+  background-color: #ffffff95;
+  border: 1px solid #ddd;
+  border-radius: 0.25rem !important;
+  padding: 10px;
+}
+
+.user-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 12px;
+  align-content: center;
+}
+
+.user-info h3 {
+  margin: 0 0 8px 0;
+  color: #333;
+}
+
+.user-info p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+
+
+/* Option 1: Modern Card Design */
+.users-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.user-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid #f0f0f0;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.25rem !important;
+}
+
+.user-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+  border-color: #e0e0e0;
+}
+
+.user-card__header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.user-card__image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid white;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.user-card__status {
+  position: absolute;
+  bottom: 8px;
+  right: calc(50% - 60px);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #4caf50;
+  border: 2px solid white;
+}
+
+.user-card__name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 0.25rem;
+  text-align: center;
+}
+
+.user-card__title {
+  color: #2626a9b2;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.user-card__info {
+  space-y: 0.75rem;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  color: #555;
+}
+
+.user-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f0f0f0;
+}
+
+.user-card__meta {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.badge--primary {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.badge--secondary {
+  background: #f3e5f5;
+  color: #7b1fa2;
+}
+
+.badge--success {
+  background: #e5f5e5;
+  color: #284d2e;
+}
+
+
+.user-card__action {
+  background: #1976d2;
+  color: white;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.user-card__action:hover {
+  background: #1565c0;
+  transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .users-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+  
+  .user-card {
+    padding: 1.25rem;
+  }
+}
+
+/* Text truncation */
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

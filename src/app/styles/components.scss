@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap');
+
+.text-def{
+    font-family: "Montserrat", sans-serif;
+    p{
+        font-size: 14px;
+    }
+}
+
+input.p-inputtext.custom__input{
+    transition: all 0.2s linear;
+    outline: 2px solid transparent;
+    border-radius: 0.25rem;
+    &:focus{
+        outline: 2px solid #4141413c;
+    }
+}
+
+.btn__blue{
+    padding: 5px 10px;
+    background-color:#2626a9b2;
+    color: white;
+    border-radius: 0.25rem !important;
+    transition: all 0.2s linear;
+    outline: 2px solid transparent;
+    border: 1px solid transparent;
+    &:hover{
+        background-color:#2a2abbb2;
+        outline: 2px solid #2626a9a9;
+        border: 1px solid #ffffffb2;
+    }
+}
+
+.btn__purple{
+    padding: 5px 10px;
+    background-color:#9f7aea;
+    color: white;
+    border-radius: 0.25rem !important;
+    transition: all 0.2s linear;
+    outline: 2px solid transparent;
+    border: 1px solid transparent;
+    &:hover{
+        background-color:#9f7aea;
+        outline: 2px solid #9f7aea8c;
+        border: 1px solid #ffffffb2;
+    }
+}
+
+.btn__green{
+    padding: 5px 10px;
+    background-color:#26a92db2;
+    color: white;
+    border-radius: 0.25rem !important;
+    transition: all 0.2s linear;
+    outline: 2px solid transparent;
+    border: 1px solid transparent;
+    &:hover{
+        background-color:#26b72db2;
+        outline: 2px solid #26a92d81;
+        border: 1px solid #ffffffb2;
+    }
+}
+
+.btn__white{
+    padding: 5px 10px;
+    background-color:#e8e8e8b2;
+    color: #2f2f2f;
+    border-radius: 0.25rem !important;
+    transition: all 0.2s linear;
+    outline: 2px solid transparent;
+    border: 1px solid transparent;
+    &:hover{
+        background-color:#e6e6e6b2;
+        outline: 2px solid #2f2f2f4c;
+        border: 1px solid #ffffffb2;
+    }
+}
+
+.btn__flow{
+    padding: 10px 10px;
+    position: relative;
+    background-color:#f4f4f4b2;
+    color: #575757;
+    border-radius: 0.25rem !important;
+    transition: all 0.2s linear;
+    outline: 2px solid #f4f4f4b2;
+    border: 1px solid white;
+    overflow: hidden;
+     font-family: "Montserrat", sans-serif;
+    &:hover {
+        &::before {
+            animation: water 1.2s 1 ease-out;
+        }
+    }
+    &:hover{
+        background-color: #c0c0c04c;
+        outline: 2px solid #a9a9a94c;
+        border: 1px solid white;
+    }
+    &:focus{
+        background-color: #c0c0c04c;
+        outline: 2px solid #a9a9a94c;
+        border: 1px solid white;
+
+    }
+    &:active{
+        background-color: #d0d0d04c;
+         transform: scale(0.99);
+    }
+    &::before{
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(192, 192, 192, 0.452);
+        transform: translate(-50%, -50%);
+    }
+}
+
+.btn__flow__blue{
+    padding: 8px 10px;
+    position: relative;
+    background-color:#2626a9ec;
+    color: #ffffff;
+    border-radius: 0.25rem !important;
+    transition: all 0.2s linear;
+    outline: 2px solid #2626a97d;
+    border: 1px solid transparent;
+    overflow: hidden;
+     font-family: "Montserrat", sans-serif;
+    &:hover {
+        &::before {
+            animation: water 1.2s 1 ease-out;
+        }
+    }
+    &:hover{
+        background-color: #2626a9ec;
+        outline: 2px solid #2626a9ec;
+        border: 1px solid #ffffff81;
+    }
+    &:focus{
+        background-color: #2626a9ec;
+        outline: 2px solid #2626a9ec;
+        border: 1px solid #ffffff81;
+
+    }
+    &:active{
+        background-color: #2626a9f6;
+         transform: scale(0.99);
+    }
+    &::before{
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(192, 192, 192, 0.452);
+        transform: translate(-50%, -50%);
+    }
+}
+
+.input__group{
+    position: relative;
+}
+
+.input__group input{
+     font-family: "Montserrat", sans-serif;
+    padding: 8px 10px;
+    border-radius: 0.3rem;
+    width: 14rem;
+    border: 1px solid rgb(214, 214, 214);
+    transition: all 0.2s ease;
+    outline: 2px solid transparent;
+    font-size: 14px;
+    &:hover{
+         border-color: #2626a9b2;
+    }
+}
+
+.input__group label{
+    position: absolute;
+    top: 7px;
+    color: #393939b6;
+    background-color: rgb(255, 255, 255);
+    left: 0;
+    margin-left: 10px;
+    font-size: 14px;
+    transition:all 0.2s ease;
+    padding: 0 0px;
+}
+
+.input__group input:focus ~ label,
+.input__group input:valid ~ label{
+    top: -10px;
+    font-size: 11px;
+    color:#2626a9b2 ;
+    
+}
+
+.input__group input:focus{
+    border-color: #2626a9b2;
+    outline: 2px solid #2626a949;
+   
+}
+.card__small{
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    blockquote{
+        font-size: 14px;
+        font-style: italic;     
+    }
+    footer{
+         font-size: 14px;
+        font-style: italic; 
+
+    }
+}
+
+
+.water-drop-2 {
+  position: relative;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow: hidden;
+  &:hover {
+        &::before {
+              animation: water 1s 1 ease-out;
+
+        }
+    }
+}
+
+.water-drop-2::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(192, 192, 192, 0.228);
+  transform: translate(-50%, -50%);
+}
+
+@keyframes water {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 0.3;
+    }
+    100% {
+        width: 600px;
+        height: 600px;
+        opacity: 0;
+    }
+}
+

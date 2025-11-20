@@ -1,0 +1,6 @@
+<form (ngSubmit)="sendMessage(inputVal(), $event)">
+    <p-inputgroup>
+        <input [style]="{'border-color':'#9f7aea'}" [pAutoFocus]="true" name="message" [(ngModel)]="inputVal" pInputText class="py-2" placeholder="Send Message.." />
+        <p-button [style]="{ 'background-color': '#9f7aea', 'color': 'white','border':'none' }" [rounded]="true"  styleClass="bgpurple" icon="pi pi-send" type="submit" label="Send" ></p-button>
+    </p-inputgroup>
+</form>

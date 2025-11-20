@@ -1,0 +1,36 @@
+<div class="chat-container d-flex flex-column" #chatContainer>
+  @for(message of messages(); track message.id; let i = $index; let count = $count){
+    @if(message.userId !== myId()){
+      <div class="chat-message__comeing fadeinleft animation-duration-500 animation-iteration-1">
+        {{message.text}}
+      </div>
+    }
+    @else if(message.userId === myId()){
+      <div class="chat-message__going fadeinright animation-duration-100            animation-iteration-1">   
+        {{message.text}}  
+        <div class="timestamp">
+          @if(message.createdAt > 0){
+            {{ getMessageTime(message.createdAt) }}
+          }@else{
+            N/A
+          }
+        </div>
+    
+        <span class="p-1 px-2 rounded-pill icon__delete">
+          <span (click)="deleteMessage($event,message.id)" class="delete-btn pi pi-trash " style="font-size: 0.8rem"></span>
+        </span>
+      </div>
+      @if(isMessageNew  && i === count - 2){
+        <div class="row text-center justify-content-center">
+          <div class="col-4"><hr/></div>
+          <div class="col-2 small text-500 mt-1">New</div>
+          <div class="col-4"><hr/></div>
+        </div>
+      }
+    } @else if(message.messageDelete){ 
+      <div class="chat-message__deleted">message deleted</div>
+    }
+  }
+  <p-confirmdialog />
+
+</div>

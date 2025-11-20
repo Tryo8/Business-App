@@ -1,0 +1,118 @@
+
+
+<div class="container">
+    @if(post){
+        @if(loadingGetPost){
+            <div class="loading justify-content-center align-content-center" style="height: 80vh;">    
+                <div class="d-flex gap-2 justify-content-center">
+                    <div class="spinner-grow spinner-grow-sm" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div class="spinner-grow spinner-grow-sm" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div class="spinner-grow spinner-grow-sm" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>  
+                </div>
+            </div>
+        }
+        @if(errorGetPost){
+            <div class="my-3 justify-content-center text-center">
+                <figure class="text-center">
+                    <img src="https://cdn-icons-png.flaticon.com/256/4865/4865933.png" height="130" class="object-fit-lg-contain"/>
+                </figure>
+                <p class="text-danger"><i class="pi pi-exclamation-circle"></i> Failed to load post</p>
+            </div>
+        }
+        <div class="card rounded-2 p-2 shadow-1" style="height: 15rem;">
+            <h4 class="text-indigo-500 text-def">{{ post.title }}</h4>
+            <p class="text-500">{{ post.body }}</p>
+            <div class="d-flex gap-2">
+                @for(tag of post.tags; track $index){
+                    <span class="text-purple-500"> #{{ tag }}</span>
+                }
+            </div>
+            <div class="d-flex mt-auto gap-2 align-items-center">
+                <span class="text-color-secondary p-2 rounded-pill surface-50">
+                    {{ post.views}}
+                    <span class="pi pi-eye"></span>
+                </span>
+                <span class="ms-auto p-2 rounded-pill surface-50 hover:surface-200 cursor-pointer">
+                    {{ post.reactions?.dislikes }} <span class="pi pi-thumbs-down-fill ms-auto text-danger"></span>
+                </span>
+                <span class="p-2 rounded-pill surface-50 hover:surface-200 cursor-pointer">
+                    {{ post.reactions?.likes }} <span class="pi pi-thumbs-up-fill text-success"></span>
+                </span>
+                <span  class="p-2 rounded-pill surface-50 hover:surface-200 cursor-pointer">
+                    {{comments.length}} <span class="pi pi-comment"></span>
+                </span>
+            </div><!-- card end -->
+        </div>
+    }@else {
+        <div class="loading justify-content-center align-content-center" style="height: 80vh;">    
+            <div class="d-flex gap-2 justify-content-center">
+                <div class="spinner-grow spinner-grow-sm" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow spinner-grow-sm" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow spinner-grow-sm" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>  
+            </div>
+        </div>
+    }
+    <div class="card rounded-2 p-2 shadow-1 mt-2">
+        <h5 class="text-600 my-1">Comments</h5> 
+        @if(loadingComments){
+            <div class="loading justify-content-center align-content-center" style="height: 80vh;">    
+                <div class="d-flex gap-2 justify-content-center">
+                    <div class="spinner-grow spinner-grow-sm" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div class="spinner-grow spinner-grow-sm" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div class="spinner-grow spinner-grow-sm" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>  
+                </div>
+            </div>
+        }
+        @if(errorComments){
+            <div class="my-3 justify-content-center text-center">
+                <figure class="text-center">
+                    <img src="https://cdn-icons-png.flaticon.com/256/4865/4865933.png" height="130" class="object-fit-lg-contain"/>
+                </figure>
+                <p class="text-danger"><i class="pi pi-exclamation-circle"></i>  {{ errorComments }}</p>
+            </div>
+        }
+        @for(comment of comments;track $index; let i =$index;){
+
+            <div class="card rounded-2 border p-3 shadow-0 mb-1">
+                <div class="d-flex align-items-center ">
+                    <div class="px-1">
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" width="30" height="30" class="rounded-circle object-fit-cover"/> 
+                    </div>
+                    <div class="px-1 text-def">
+                        <strong>{{ comment.user.fullName }}</strong>
+                        <span class="text-muted"> / {{ comment.user.username }}</span>
+                    </div>
+                </div>
+                 
+                <p class="mb-0 text-500 mt-2">{{ comment.body }}</p>
+                <div class="d-flex">
+                    <small class="ms-auto p-2 rounded-pill surface-50 hover:surface-200 cursor-pointer">
+                        {{ comment.likes }} <span class="pi pi-thumbs-up-fill text-success"></span>
+                    </small>
+                </div>
+            </div>
+        }@empty{
+            <div class="d-flex my-3 text-500 justify-content-center">
+                <p>There are no comments</p>
+            </div>
+        }
+    </div>
+</div>

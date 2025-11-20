@@ -1,0 +1,96 @@
+<div class="row px-1 justify-content-center" >
+    @for(post of posts; track $index){
+        <div 
+            pAnimateOnScroll 
+            enterClass="scalein animation-duration-500 animation-iteration-1"
+            leaveClass="fadeinleft animation-duration-500 animation-iteration-1"  
+            [threshold]="0.2"
+            [rootMargin]="'0px 0px -100px 0px'"
+            [once]="true"
+            class="col-12 p-1"
+            >
+                <div class="card shadow-2 rounded-2 p-2" 
+                [style]="post.showFull ? 'max-height: 100%; height: 100%;' : 'max-height: 18rem; height: 15rem; width:100%;' ">
+                <div class="d-flex justify-content-between">
+                    <h5 class="text-indigo-500 text-def">{{post.title}}</h5><small class="text-muted">{{ post.createdAt }}</small>
+                </div>
+                
+                <p class="mb-0 text-500 truncate-4-lines" >
+                    {{post.body}} 
+                </p>
+                <small (click)="openPost(post.id!)" class="text-400 cursor-pointer">  
+                    {{ post.showFull ? 'Show less' : 'Show more' }}
+                </small>
+                <div class="d-flex gap-2">
+                    @for(tag of post.tags; track $index){
+                        <span class="text-purple-500"># {{ tag }}</span>
+                    }
+                </div>
+                
+                <div class="d-flex mt-auto gap-2 align-items-center">
+                    <p-button [style]="{'border-radius':'30px','padding': '1px 1px', 'border':'1px solid transparent'}" (onClick)="confirmDelete($event, post.id!)" label="" icon="pi pi-trash py-1" severity="danger" [outlined]="true" />
+                      <p-button [style]="{'border-radius':'30px','padding': '1px 1px', 'border':'1px solid transparent'}" (click)="openEditDialog(post)" label="" icon="pi pi-pencil py-1" severity="secondary" [outlined]="true" />
+                    <span class="text-color-secondary">
+                        {{ post.views}}
+                        <span class="pi pi-eye"></span>
+                    </span>
+                    <span class="ms-auto p-2 rounded-pill surface-50 hover:surface-200 cursor-pointer">
+                        {{ post.reactions?.dislikes }} <span class="pi pi-thumbs-down-fill ms-auto text-danger"></span>
+                    </span>
+                    <span class=" p-2 rounded-pill surface-50 hover:surface-200 cursor-pointer">
+                        {{ post.reactions?.likes }} <span class="pi pi-thumbs-up-fill text-success"></span>
+                    </span>
+                    <span (click)="openPost(post.id!)" class=" p-2 rounded-pill surface-50 hover:surface-200 cursor-pointer">
+                       {{ post.commentsCount || 0}}<span class="pi pi-comment px-1"></span>
+                    </span>
+                    <button class="btn__green" (click)="openPost(post.id!)">details</button>
+                </div><!-- card end -->
+            </div>
+        </div>
+        @if ($last) {
+            <div class="d-flex my-2 justify-content-center text-500">
+                <p class="small">There are no more posts</p>
+            </div>
+        }
+    }
+    @empty {
+       <div class="col text-center mt-5">
+            <figure class="mt-3">
+                <img src="https://cdn-icons-png.flaticon.com/256/4865/4865929.png" height="130" class="object-fit-lg-contain"/>
+            </figure>
+            <p class="text-muted">No results</p>
+       </div>
+    }
+</div>
+
+<p-confirmpopup />
+<p-toast position="bottom-right" />
+
+
+<p-dialog header="Add Post" [modal]="true" [(visible)]="dialogUpdtaeVisible" [style]="{ width: '25rem' }">
+    <span class="p-text-secondary block mb-3">Update your post details</span>
+    @if(editingPost){
+        <div class=" mb-2">
+            <p-floatlabel variant="on">
+                <input  name="title" [(ngModel)]="editingPost.title" pInputText id="title" class="flex-auto w-100 w-full" autocomplete="off" />
+                <label for="title">Title</label>
+            </p-floatlabel>
+        </div>
+        <div class="mb-2">
+            <p-floatlabel variant="on">
+                <input [(ngModel)]="editingPost.tags" name="tags" pInputText id="tags" class="flex-auto w-100 w-full" autocomplete="on" />
+                <label for="tags">Tags</label>
+            </p-floatlabel>
+        </div>
+        <div class="flex items-center gap-4 mb-8">   
+            <p-floatlabel variant="on">
+                <textarea [(ngModel)]="editingPost.body" name="body" pTextarea id="description" rows="4" cols="43" style="resize: none" class="h-full"></textarea>
+                <label for="description">Description</label>
+            </p-floatlabel>
+        </div>
+        <div class="flex justify-content-end gap-2">
+            <button class="btn__white px-3" (click)="dialogUpdtaeVisible = false">Cancel</button>
+            <button  class="btn__blue px-5"  (click)="savePost()">Save</button>
+        </div>
+    }
+</p-dialog>

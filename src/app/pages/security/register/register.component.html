@@ -1,0 +1,102 @@
+<div class="container border border-danger justify-content-center mt-5">
+    <div class="grid justify-content-center align-content-center w-100 mt-5">
+        <div class="col-12 justify-content-center" style="max-width: 26rem;">
+            <div class="card p-2 px-3 py-4 rounded-2 shadow-3 border-0">
+                <div class="mb-1">
+                    <h5 class="text_blue">Register</h5>
+                    @if(formError){
+                        <p style="color: #f87171;">
+                            <span class="pi pi-exclamation-circle"></span> Please fill all the fields
+                        </p>
+                    }
+                </div>
+                <form [formGroup]="registerForm" (ngSubmit)="onRegisterFormSubmit()">
+                    <div class="mb-2">
+                        <p-floatlabel variant="on">
+                            <p-iconfield>
+                                @if(username.dirty && username.errors && username.touched){
+                                    <p-inputicon styleClass="pi pi-user" style="color: #f87171;"/>
+                                } @else {
+                                    <p-inputicon styleClass="pi pi-user" />
+                                }
+                                <input formControlName="username" id="username" class="w-full custom__input" [pAutoFocus]="true" type="text" pInputText  />
+                            </p-iconfield>
+                            <label class="fw-normal" for="username">Username</label>
+                        </p-floatlabel>
+                    </div>
+                    <div class="mb-2">
+                        <p-floatlabel variant="on">
+                            <p-iconfield>
+                                @if(email.errors  && email.dirty){
+                                    <p-inputicon styleClass="pi pi-envelope" style="color: #f87171;" />
+                                } @else {
+                                    <p-inputicon styleClass="pi pi-envelope" />
+                                }
+                                <input formControlName="email" id="email" class="w-full custom__input" type="text" pInputText  />
+                            </p-iconfield>
+                            <label class="fw-normal" for="email">Email</label>
+                        </p-floatlabel>
+                    </div>
+                    <div class="mb-2">
+                        <p-floatlabel variant="on">
+                            <p-iconfield>
+                                @if(password.errors  && password.dirty){
+                                    <p-inputicon styleClass="pi pi-lock" style="color: #f87171;" />
+                                } @else {
+                                    <p-inputicon styleClass="pi pi-lock" />
+                                }
+                                <input formControlName="password" id="password" class="w-full custom__input" 
+                                [type]="txtPassword ? 'text' : 'password'" pInputText  />
+                                <p-inputicon class="cursor-pointer" (click)="showPassword()" 
+                                [styleClass]="txtPassword ? 'pi pi-eye-slash' : 'pi pi-eye'" />
+                            </p-iconfield>
+                            <label class="fw-normal" for="password">Password</label>
+                        </p-floatlabel>
+                    </div>
+                    <div class="row mb-2 px-2">
+                        <div class="col px-1">
+                            <div class="mb-2">
+                                <p-floatlabel variant="on">
+                                    <p-iconfield>
+                                        <input formControlName="position" id="position" class="w-full custom__input" type="text" pInputText  />
+                                        @if(position.errors  && position.dirty){
+                                            <p-inputicon styleClass="pi pi-user-edit" style="color: #f87171;" />
+                                        } @else {
+                                            <p-inputicon styleClass="pi pi-user-edit" />
+                                        }
+                                    </p-iconfield>
+                                    
+                                    <label class="fw-normal" for="position">Position</label>
+                                </p-floatlabel>
+                            </div>
+                        </div>
+                              <div class="col px-1">
+                            <div class="mb-2">
+                                <p-floatlabel variant="on">
+                                    <p-iconfield >
+                                        <p-datepicker [style]="{'border-radius':' 0.25rem'}" formControlName="birthDate" id="birth"  [iconDisplay]="'input'" [showIcon]="false" inputId="icondisplay" />
+                                        @if(birthDate.errors  && birthDate.dirty){
+                                            <p-inputicon styleClass="pi pi-calendar" style="color: #f87171;"/>
+                                        }@else {
+                                            <p-inputicon styleClass="pi pi-calendar" />
+                                        }
+                                    </p-iconfield>
+                                    <label class="fw-normal" for="birth">Birth Date</label>
+                                </p-floatlabel>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-2 d-grid">
+                        <button type="submit" class="btn__blue flipup animation-duration-500 animation-iteration-1">Submit</button>
+                    </div>
+                </form>
+                <small class="text-center">Do you already have an account? <a [routerLink]="'/auth/login'" class="text-blue-500 cursor-pointer hover:text-blue-400 no-underline">Login</a></small>
+                
+                <a (click)="skip()"  pTooltip="Are you sure?" tooltipPosition="top" placeholder="Top" 
+                    class="text-muted text-center hover:text-blue-400 cursor-pointer">
+                    Skip for now?
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

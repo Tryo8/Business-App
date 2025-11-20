@@ -1,0 +1,74 @@
+<div class="container">
+    <div class="gap-2" class="grid" style="grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: 0.8rem;">
+        <div class="card shadow-0 rounded-2 d-inline-block" 
+        style="height: 22rem; width: 40rem;">
+        <img class="card-img-top rounded-2 h-100" src="./assets/imgs/bg/bg_white_pattern.png" alt="card_image">
+        <div class="card-img-overlay">
+            @if(user){
+                <div class="text-def">
+                    <h3 class="fw-light text-dark">Welcome Back!</h3>
+                    <div class="d-flex align-items-center">
+                        <h5 class="h5 fw-normal text-800">
+                            {{ user.profile.firstName }} {{ user.profile.lastName }}
+                        </h5>
+                        <p-overlaybadge class="ms-auto surface-100 hover:surface-200 p-1 rounded-circle" value="" severity="success" title="events">
+                            <i class="pi pi-calendar p-1 text-800" style="font-size: 1.2rem"></i>
+                        </p-overlaybadge>
+                    </div>
+                    <button class="btn__flow__blue mt-5 fadeindown animation-duration-500 animation-iteration-1">Let's Get Down to Business!</button>
+                </div>
+            }
+        </div>
+      
+        </div>
+
+
+        <div class="card card__shadow text-def py-1 px-0 rounded-2 d-inline-block " 
+        style="height: 22rem; width: 15rem;">
+        @for (employee of users.slice(0,5); track $index;let i = $count) {
+            <button (click)="getUserDetails(employee.id)" pRipple class="flipup  animation-duration-500 animation-iteration-1 relative overflow-hidden w-full flex p-2 border-0 rounded-none cursor-pointer bg-white hover:surface-50">
+                <p-avatar size="large" [image]="employee.image ? employee.image : 'https://cdn-icons-png.flaticon.com/128/9131/9131646.png'" class="mr-2" shape="circle" />
+                <div class="align-items-start justify-content-center text-start w-75">
+                    <span class="fw-normal">{{employee.firstName}} {{employee.lastName}}</span>
+                 
+                    <div class="d-flex">
+                        <span class="text-blue-700 text-xs">{{employee.company.department.slice(0,16)}}</span>
+                    </div>
+                </div>
+            </button>
+        }
+            <div [routerLink]="'/user/employees'" 
+                class="cursor-pointer text-center text-indigo-400 small hover:text-indigo-500">show all
+            </div>
+        </div>
+        <div class="card__small water-drop-2 p-2 rounded-2 d-inline-block d-inline flex-wrap" style="height:12rem; width: 25rem;">
+            <h6 class="text-700">
+                <span class="surface-100 rounded-circle p-1">
+                    <i class="pi pi-lightbulb text-yellow-400 p-1"></i>
+                </span>
+                Quote of the day
+            </h6>
+            @if(displayQoute){
+                <div class="p-3 zoomin animation-duration-500 animation-iteration-1 text-def">
+                    <blockquote class="text-500">
+                        “{{displayQoute.quote}}”
+                    
+                    </blockquote>
+                    <div class="d-flex">
+                        <footer class="mt-3 text-600">— {{displayQoute.author}}</footer>
+                    </div>
+
+                </div>
+              
+                
+                
+                    
+             
+            }
+        </div>
+
+
+
+    </div>
+
+</div>

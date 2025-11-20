@@ -1,0 +1,43 @@
+
+<div class="container justify-content-center">
+    @if(loading){
+        <div class="loading justify-content-center align-content-center" style="height: 80vh;">    
+            <div class="d-flex gap-2 justify-content-center">
+                <div class="spinner-grow spinner-grow-sm" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow spinner-grow-sm" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow spinner-grow-sm" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>  
+            </div>
+        </div>
+    }
+    @if(error){
+        <div class="my-3 justify-content-center text-center">
+            <figure class="text-center">
+                <img src="https://cdn-icons-png.flaticon.com/256/4865/4865933.png" height="130" class="object-fit-lg-contain"/>
+            </figure>
+            <p class="text-danger"><i class="pi pi-exclamation-circle"></i>  {{ error }}</p>
+        </div>
+    }
+    @if(user){
+        <div class="card bg-light p-3 w-full">
+            <div class="d-flex align-items-center gap-3">
+                <figure>
+                    <img height="110" width="110" class="rounded-circle shadow-lg" [src]="user.image ? user.image : 'https://cdn-icons-png.flaticon.com/128/847/847969.png'" alt="profile_image" />
+                </figure>
+                <span class="h2 fs-3 fw-normal text-def">
+                    {{ user.firstName }} {{user.maidenName}} {{ user.lastName}}
+                    <div class="h5 fw-normal text-600 mt-1"><i class="text_blue">&#64;</i>
+                        {{ user.username }}
+                    </div>
+                    <div class="fs-6"><i class="pi pi-envelope text_blue"></i> {{ user.email }}</div>
+                </span>
+            </div>
+        </div>
+    }
+
+</div>

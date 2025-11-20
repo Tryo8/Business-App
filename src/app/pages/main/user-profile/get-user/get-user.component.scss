@@ -1,0 +1,23 @@
+i{
+    color: #2626a9b2;
+}
+
+.vertical-hr {
+  border-left: 1px solid #2626a9b2;
+  height: 100px; /* Adjust height as needed */
+  margin: 0 20px; /* Adjust spacing */
+}
+
+.user-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 12px;
+  align-content: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+i{
+   gap: 0.75rem;
+}

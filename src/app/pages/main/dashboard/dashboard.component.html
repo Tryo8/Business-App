@@ -1,0 +1,95 @@
+<div class="container border border-danger">
+    <div class="row">
+        <div class="col-8"> 
+            <h5 class="text-600">Posts</h5> 
+            <div class="row px-1">
+                <div class="col px-1">      
+                <p-iconfield>
+                    <p-inputicon styleClass="pi pi-search" />
+                    <input [(ngModel)]="searchTitle" class="w-full" type="text" pInputText placeholder="Search Posts..." />
+                </p-iconfield></div>
+                <div class="col-4 px-1">
+                    <p-select optionValue="value" [options]="likesFilter" [(ngModel)]="selectedFilter" optionLabel="name" placeholder="Filter" class="w-full md:w-56">
+                        <ng-template pTemplate="item" let-option> 
+                            <span>{{ option.name }}</span>
+                            <i [class]="option.icon" class="ms-auto"></i>
+                        </ng-template>
+
+                            <ng-template #selectedItem let-selectedOption>
+                                <div class="d-flex items-center gap-2" *ngIf="selectedOption">
+                                    <span class="mt-1" [class]="selectedOption.icon"></span>
+                                    <div>{{ selectedOption.name }}</div>
+                                </div>
+                            </ng-template>
+                    </p-select>
+                </div>
+                <div class="col-1 px-1">
+                    <button style="padding: 8px 17px;" class="btn__green" 
+                    (click)="showAddPostDialog()" label="Show">
+                        Post
+                    </button>
+                </div>
+            </div> 
+            @if(loading){
+                <div class="loading justify-content-center align-content-center" style="height: 80vh;">    
+                    <div class="d-flex gap-2 justify-content-center">
+                        <div class="spinner-grow spinner-grow-sm" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow spinner-grow-sm" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow spinner-grow-sm" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>  
+                    </div>
+                </div>
+            }@else {
+                <app-posts [searchKey]="searchTitle" [posts]="posts | searchPosts : searchTitle | filterPosts:selectedFilter"></app-posts>
+
+            }
+            @if(error){
+                <div class="my-3 justify-content-center text-center">
+                    <figure class="text-center">
+                        <img src="https://cdn-icons-png.flaticon.com/256/4865/4865933.png" height="130" class="object-fit-lg-contain"/>
+                    </figure>
+                    <p class="text-danger"><i class="pi pi-exclamation-circle"></i>  {{ error }}</p>
+                </div>
+            } 
+          
+        </div>
+        <div class="col-4 ">
+            <app-room></app-room>
+        </div>
+    </div>
+</div>
+
+
+
+
+<p-dialog header="Add Post" [modal]="true" [(visible)]="dialogFilterVisible" [style]="{ width: '25rem' }">
+    <form (ngSubmit)="addPost()">
+        <div class=" mb-2">
+            <p-floatlabel variant="on">
+                <input  name="title" [(ngModel)]="newPost.title" pInputText id="title" class="flex-auto w-100 w-full" autocomplete="off" />
+                <label for="title">Title</label>
+            </p-floatlabel>
+        </div>
+        <div class="mb-2">
+            <p-floatlabel variant="on">
+                <input [(ngModel)]="newPost.tags" name="tags" pInputText id="tags" class="flex-auto w-100 w-full" autocomplete="on" />
+                <label for="tags">Tags</label>
+            </p-floatlabel>
+        </div>
+        <div class="flex items-center gap-4 mb-8">   
+            <p-floatlabel variant="on">
+                <textarea [(ngModel)]="newPost.body" name="body" pTextarea id="description" rows="3" cols="43" style="resize: none" class="h-full"></textarea>
+                <label for="description">Description</label>
+            </p-floatlabel>
+        </div>
+        <div class="flex justify-content-end gap-2">
+            <button class="btn__white px-3" (click)="dialogFilterVisible = false">Cancel</button>
+            <button type="submit" class="btn__blue px-5">Save</button>
+        </div>
+    </form> 
+</p-dialog>

@@ -1,0 +1,71 @@
+<div class="container">
+    @if(loading){
+        <div class="loading justify-content-center align-content-center" style="height: 80vh;">    
+            <div class="d-flex gap-2 justify-content-center">
+                <div class="spinner-grow spinner-grow-sm" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow spinner-grow-sm" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <div class="spinner-grow spinner-grow-sm" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>  
+            </div>
+        </div>
+    }
+    @if(error){
+        <div class="my-3 justify-content-center text-center">
+            <figure class="text-center">
+                <img src="https://cdn-icons-png.flaticon.com/256/4865/4865933.png" height="130" class="object-fit-lg-contain"/>
+            </figure>
+            <p class="text-danger"><i class="pi pi-exclamation-circle"></i>  {{ error }}</p>
+        </div>
+    }
+    @if(usersDetails){
+        <div class="card text-def p-3 rounded-2 shadow-1" style="height: 24rem;">
+            <div class="d-flex align-items-center gap-2">
+                <figure class="px-4">
+                    <img [src]="usersDetails ? usersDetails.image : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'" class="rounded-circle user-image" height="80" width="80" />
+                </figure>
+                <div class="d-block">
+                    <h4 class="text_blue">
+                        {{ usersDetails.firstName }} {{ usersDetails.lastName }}
+                    </h4>
+                    <h6 class="text-700"><i class="pi pi-user"></i> {{usersDetails.username}}</h6>
+                    @if(usersDetails.gender === "male"){
+                        <p class="text-500"> <i class="pi pi-mars"></i>He/Him</p>
+                    }@else {<p class="text-500"><i class="pi pi-venus"></i> She/Her</p>}
+                </div>
+            </div>
+            <div class="row text-600 mt-3">
+                <div class="col vertical-hr "> 
+                    <div class="px-4 gap-2"> 
+                        <p><i class="pi pi-envelope"></i>
+                            <span> {{ usersDetails.email}}</span></p>
+                        <p><i class="pi pi-phone"></i> {{ usersDetails.phone}}</p>
+                        <p><i class="pi pi-home"></i> {{ usersDetails.address.address}} | {{ usersDetails.address.city}} | {{usersDetails.address.state}}</p>
+                        <p><i class="pi pi-flag"></i> {{ usersDetails.address.country}}</p>
+                    </div>
+                </div>
+                 <div class="col vertical-hr "> 
+                    <div class="px-4 gap-2"> 
+                        <p><i class="pi pi-building-columns"></i> {{ usersDetails.university}}</p>
+                        <p><i class="pi pi-hashtag"></i> {{ usersDetails.company.title}}</p>
+                        <p><i class="pi pi-building"></i> {{ usersDetails.company.department}}</p>
+                        <p><i class="pi pi-credit-card"></i> {{ usersDetails.bank.cardType}}</p>
+                    </div>
+                </div>
+                 <div class="col vertical-hr "> 
+                    <div class="px-4 gap-2"> 
+                        <p><i class="pi pi-briefcase"></i>
+                             {{ usersDetails.company.address.address}} |  {{ usersDetails.company.address.city}}</p>
+                        <p><i class="pi pi-address-book"></i>  {{ usersDetails.company.address.state}}</p>
+                        <p><i class="pi pi-flag-fill"></i> {{ usersDetails.company.address.country}}</p>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    }
+</div>
