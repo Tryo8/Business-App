@@ -87,7 +87,13 @@
                         </div>
                     </div>
                     <div class="mb-2 d-grid">
-                        <button type="submit" class="btn__blue flipup animation-duration-500 animation-iteration-1">Submit</button>
+                        @if(isSubmitting){
+                            <button [disabled]="true" type="submit" class="btn__blue flipup animation-duration-500 animation-iteration-1"> <i class="pi pi-spin pi-spinner" style="font-size: 0.9rem"></i> Register
+                            </button>
+
+                        }@else {
+                            <button type="submit" class="btn__blue flipup animation-duration-500 animation-iteration-1">Register</button>
+                        }
                     </div>
                 </form>
                 <small class="text-center">Do you already have an account? <a [routerLink]="'/auth/login'" class="text-blue-500 cursor-pointer hover:text-blue-400 no-underline">Login</a></small>

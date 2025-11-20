@@ -75,8 +75,10 @@ export class RegisterComponent {
   };
 
   onRegisterFormSubmit(){
-    if(this.isSubmitting) return;
+ 
     this.isSubmitting = true;
+
+
 
     if(this.registerForm.valid){
       console.log(this.registerForm.value)

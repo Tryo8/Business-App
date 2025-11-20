@@ -15,7 +15,11 @@ small{
 .small{
     font-family: "Montserrat", sans-serif;
     font-size: 13px;
+}
 
+button:disabled {
+    opacity: 0.8;
+    pointer-events: none !important;
 }
 
 ::-webkit-scrollbar {
