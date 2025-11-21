@@ -48,7 +48,8 @@ export class UserNavComponent {
     isLight = false;
     navItems: MenuItem[] | undefined;
     userItems: MenuItem[] | undefined;
-    usersDetails: User  | null = null
+    usersDetails: User  | null = null;
+    isThemeToggled: boolean = false;
 
     ngOnInit() {
         this.user = this._user.getUser();
@@ -79,13 +80,13 @@ export class UserNavComponent {
             },
         ];
         this.userItems = [
-             {
+            {
                 label: 'Profile',
                 icon: 'pi pi-user',
                 routerLink: 'profile'                
             },
             {
-                label: 'Theme',
+                label: 'Light',
                 icon: 'pi pi-sun',
                 command: () => {
                     this.toggleTheme()
@@ -102,20 +103,46 @@ export class UserNavComponent {
                     this.confirmLogout(event)
                 }
             },
-        ]
+        ];
         
     }
 
     toggleTheme() {
         this.isLight = !this.isLight;
-
         if (this.isLight) {
             document.body.classList.add('light-theme');
+            this.isThemeToggled = !this.isThemeToggled
+            this.loadMenu()
         } else {
             document.body.classList.remove('light-theme');
         }
     };
-
+    loadMenu() {
+        this.userItems = [
+            {
+                label: 'Profile',
+                icon: 'pi pi-user',
+                routerLink: 'profile'                
+            },
+            {
+                label: 'Grey',
+                icon:'pi pi-moon',
+                command: () => this.toggleTheme()
+            },
+            {
+                separator: true,
+            },
+            {
+                label: 'Logout',
+                icon: 'pi pi-power-off',
+                style:{ 'color': 'red' },
+                command: ()=> {
+                    this.confirmLogout(event)
+                }
+            },
+        ];
+    }
+ 
 
     confirmLogout(event: Event | any) {
         this.confirmationService.confirm({

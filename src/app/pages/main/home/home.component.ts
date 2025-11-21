@@ -8,6 +8,9 @@ import { TagModule } from 'primeng/tag';
 import { OverlayBadgeModule } from 'primeng/overlaybadge';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AvatarModule } from 'primeng/avatar';
+import { ISales } from '../../../core/interface/ISales';
+import { SalesService } from '../../../core/services/sales.service';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-home',
   imports: [
@@ -15,7 +18,8 @@ import { AvatarModule } from 'primeng/avatar';
     OverlayBadgeModule,
     TagModule,
     AvatarModule,
-    RouterLink
+    RouterLink,
+    CommonModule
 ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
@@ -26,7 +30,8 @@ export class HomeComponent {
     private _quotesService:QuotesService,
     private _userService:UserService,
     private _router:ActivatedRoute,
-    private _route:Router
+    private _route:Router,
+    private _salesService:SalesService
   ){};
 
 
@@ -37,6 +42,7 @@ export class HomeComponent {
   loading = false;
   error = '';
   usersDetails: User  | null = null
+  salesInfo: ISales[] | any = [];
 
   ngOnInit() {
     this._router.params.subscribe(params => {
@@ -44,6 +50,7 @@ export class HomeComponent {
       this.getUserDetails(userId);
     });
     this.loadUsers();
+    this.getSalesInfo();
     
     this.user = this._userService.getUser();
     /** spinner starts on init */
@@ -85,7 +92,7 @@ export class HomeComponent {
     }
   };
 
-
+  //LOAD 5 USERS
   loadUsers(): void {
     this.loading = true;
     this._userService.getUsers().subscribe({
@@ -115,5 +122,20 @@ export class HomeComponent {
       }
     })
   };
+
+  getSalesInfo(): void {
+    this._salesService.getSales().subscribe({
+      next: (res) => {
+        this.salesInfo = res;
+        console.log(res);
+      },
+      error: (err) => {
+        console.log('Error getting sales info:', err);
+      }
+
+    })
+  };
+
+
 
 }
