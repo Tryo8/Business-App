@@ -1,7 +1,7 @@
 <div class="card shadow-1 border-0 mb-3 p-0">
     <p-menubar styleClass="surface-50 py-1 rounded-0" [model]="navItems">
         <ng-template #start>
-            <h5>kys</h5>
+            <img class="rounded-pill flipleft animation-duration-1000 animation-iteration-1" src="./assets/imgs/logo/business-app-brand.jpg" width="35"/>
         </ng-template>
         <ng-template #item let-item let-root="root">
             <a [routerLink]="item.routerLink" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active" pRipple class="flex items-center p-menubar-item-link">
@@ -25,5 +25,4 @@
         </ng-template>
     </p-menubar>
 </div>
-
 <p-confirmdialog />

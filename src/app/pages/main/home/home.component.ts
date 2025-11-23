@@ -11,18 +11,24 @@ import { AvatarModule } from 'primeng/avatar';
 import { ISales } from '../../../core/interface/ISales';
 import { SalesService } from '../../../core/services/sales.service';
 import { CommonModule } from '@angular/common';
+import { GalleriaModule } from 'primeng/galleria';
+
+import { TableModule } from 'primeng/table';
+import { AnnouceService } from '../../../core/services/annouce.service';
 @Component({
   selector: 'app-home',
   imports: [
+    GalleriaModule,
     BadgeModule,
     OverlayBadgeModule,
     TagModule,
     AvatarModule,
     RouterLink,
-    CommonModule
+    CommonModule,
+    TableModule
 ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
 })
 export class HomeComponent {
   constructor(
@@ -31,10 +37,11 @@ export class HomeComponent {
     private _userService:UserService,
     private _router:ActivatedRoute,
     private _route:Router,
-    private _salesService:SalesService
+    private _salesService:SalesService,
+    private _annouceSerice:AnnouceService
   ){};
 
-
+  products!: any[];
   user: User | any = null;
   displayQoute:any[] | any ;
   lastQuoteDate: string | null = null;
@@ -43,6 +50,7 @@ export class HomeComponent {
   error = '';
   usersDetails: User  | null = null
   salesInfo: ISales[] | any = [];
+  annoucments: any[] = []
 
   ngOnInit() {
     this._router.params.subscribe(params => {
@@ -51,6 +59,7 @@ export class HomeComponent {
     });
     this.loadUsers();
     this.getSalesInfo();
+    this.getAnnoucments()
     
     this.user = this._userService.getUser();
     /** spinner starts on init */
@@ -63,6 +72,16 @@ export class HomeComponent {
     }, 1000);
   };
 
+  responsiveOptions: any[] = [
+    {
+        breakpoint: '1300px',
+        numVisible: 4
+    },
+    {
+        breakpoint: '575px',
+        numVisible: 1
+    }
+  ];
   // QUOTE METHOD TO GET QOUTES
   getRandomQuote(): void{
     this._quotesService.getRnaodmQuotes().subscribe({
@@ -132,10 +151,38 @@ export class HomeComponent {
       error: (err) => {
         console.log('Error getting sales info:', err);
       }
-
     })
   };
 
+  getAnnoucments(): void {
+    this._annouceSerice.getAnnouceMents().subscribe({
+      next: (res:any) => {
+      this.annoucments = res.announcements?.map((a: any) => ({
+          ...a,
+          images: [{ itemImageSrc: a.imageUrl, thumbnailImageSrc: a.imageUrl }]
+        })) || [];
+        console.log(this.annoucments);
+      },
+      error: (err) => {
+        console.log('Error getting annoucements', err);
+      }
+    })
+  };
+
+  // DISPLAY ALL ANNOUCMENTS
+  get allImages() {
+    const allImages: any[] = [];
+    this.annoucments.forEach(announcement => {
+      announcement.images.forEach((images: any) => {
+        allImages.push({
+          ...images,
+          title: announcement.title,
+          summary: announcement.summary
+        });
+      });
+    });
+    return allImages;
+  }
 
 
 }

@@ -165,6 +165,54 @@ input.p-inputtext.custom__input{
     }
 }
 
+.btn__flow__green{
+    padding: 8px 10px;
+    position: relative;
+    background-color:#26a926ec;
+    color: #ffffff;
+    border-radius: 0.25rem !important;
+    transition: all 0.2s linear;
+    outline: 2px solid #26a9267d;
+    border: 1px solid transparent;
+    overflow: hidden;
+    font-family: "Montserrat", sans-serif;
+
+    &:hover {
+        &::before {
+            animation: water 1.2s 1 ease-out;
+        }
+    }
+
+    &:hover{
+        background-color: #26a926ec;
+        outline: 2px solid #26a926ec;
+        border: 1px solid #ffffff81;
+    }
+
+    &:focus{
+        background-color: #26a926ec;
+        outline: 2px solid #26a926ec;
+        border: 1px solid #ffffff81;
+    }
+
+    &:active{
+        background-color: #26a926f6;
+        transform: scale(0.99);
+    }
+
+    &::before{
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(192, 192, 192, 0.452);
+        transform: translate(-50%, -50%);
+    }
+}
+
 .input__group{
     position: relative;
 }

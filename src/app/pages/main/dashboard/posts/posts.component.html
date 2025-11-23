@@ -9,7 +9,7 @@
             [once]="true"
             class="col-12 p-1"
             >
-                <div class="card shadow-2 rounded-2 p-2" 
+                <div class="card shadow-2 rounded-2 p-2 text-def" 
                 [style]="post.showFull ? 'max-height: 100%; height: 100%;' : 'max-height: 18rem; height: 15rem; width:100%;' ">
                 <div class="d-flex justify-content-between">
                     <h5 class="text-indigo-500 text-def">{{post.title}}</h5><small class="text-muted">{{ post.createdAt }}</small>
@@ -23,27 +23,29 @@
                 </small>
                 <div class="d-flex gap-2">
                     @for(tag of post.tags; track $index){
-                        <span class="text-purple-500"># {{ tag }}</span>
+                        <span class="text-purple-500 text-sm"># {{ tag }}</span>
                     }
                 </div>
                 
                 <div class="d-flex mt-auto gap-2 align-items-center">
                     <p-button [style]="{'border-radius':'30px','padding': '1px 1px', 'border':'1px solid transparent'}" (onClick)="confirmDelete($event, post.id!)" label="" icon="pi pi-trash py-1" severity="danger" [outlined]="true" />
                       <p-button [style]="{'border-radius':'30px','padding': '1px 1px', 'border':'1px solid transparent'}" (click)="openEditDialog(post)" label="" icon="pi pi-pencil py-1" severity="secondary" [outlined]="true" />
-                    <span class="text-color-secondary">
+                    <span class="text-color-secondary text-sm">
                         {{ post.views}}
-                        <span class="pi pi-eye"></span>
+                        <span class="pi pi-eye" ></span>
                     </span>
-                    <span class="ms-auto p-2 rounded-pill surface-50 hover:surface-200 cursor-pointer">
+                    <span class="text-sm ms-auto p-2 rounded-pill surface-50 hover:surface-200 cursor-pointer ">
                         {{ post.reactions?.dislikes }} <span class="pi pi-thumbs-down-fill ms-auto text-danger"></span>
                     </span>
-                    <span class=" p-2 rounded-pill surface-50 hover:surface-200 cursor-pointer">
+                    <span class="text-sm p-2 rounded-pill surface-50 hover:surface-200 cursor-pointer">
                         {{ post.reactions?.likes }} <span class="pi pi-thumbs-up-fill text-success"></span>
                     </span>
                     <span (click)="openPost(post.id!)" class=" p-2 rounded-pill surface-50 hover:surface-200 cursor-pointer">
                        {{ post.commentsCount || 0}}<span class="pi pi-comment px-1"></span>
                     </span>
-                    <button class="btn__green" (click)="openPost(post.id!)">details</button>
+                    <button class="btn__green pt-2" (click)="openPost(post.id!)">
+                        <span class="pi pi-arrow-right"></span>
+                    </button>
                 </div><!-- card end -->
             </div>
         </div>

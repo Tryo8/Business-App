@@ -17,6 +17,7 @@ import { TextareaModule } from 'primeng/textarea';
 import { FloatLabel } from 'primeng/floatlabel';
 import { GetOnePostComponent } from "./get-one-post/get-one-post.component";
 import { RouterOutlet } from "@angular/router";
+import { BreadcrumbComponent } from "../../../layout/components/breadcrumb/breadcrumb.component";
 
 @Component({
   selector: 'app-dashboard',
@@ -37,6 +38,7 @@ import { RouterOutlet } from "@angular/router";
     FloatLabel,
     RoomComponent,
     SelectModule,
+    BreadcrumbComponent
 ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
