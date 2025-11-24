@@ -24,19 +24,43 @@
         </div>
     }
     @if(user){
-        <div class="card bg-light p-3 w-full">
-            <div class="d-flex align-items-center gap-3">
+        <div class="card bg-light rounded-2 p-3 w-full">
+            <div class="d-flex align-content-center gap-3">
                 <figure>
-                    <img height="110" width="110" class="rounded-circle shadow-lg" [src]="user.image ? user.image : 'https://cdn-icons-png.flaticon.com/128/847/847969.png'" alt="profile_image" />
+                    <img height="110" width="110" class="rounded-circle shadow-3" [src]="user.image ? user.image : 'https://cdn-icons-png.flaticon.com/128/847/847969.png'" alt="profile_image" />
                 </figure>
-                <span class="h2 fs-3 fw-normal text-def">
-                    {{ user.firstName }} {{user.maidenName}} {{ user.lastName}}
-                    <div class="h5 fw-normal text-600 mt-1"><i class="text_blue">&#64;</i>
-                        {{ user.username }}
+                <span class="h2 fs-3 fw-normal text-def mt-2">
+                    {{ user.firstName }} {{user.maidenName}} {{ user.lastName}} | <span class="h5 fw-normal text-600 mt-1">&#64;{{ user.username }}</span>
+                    <div class="fs-6 mt-1">
+                        <i class="pi pi-envelope text_blue"></i> {{ user.email }}
                     </div>
-                    <div class="fs-6"><i class="pi pi-envelope text_blue"></i> {{ user.email }}</div>
+                    <div class="fs-6 mt-1">
+                        <i class="pi pi-phone text_blue"></i> {{ user.phone }}
+                    </div>
+                    <div class="fs-6 mt-1">
+                        <i class="pi pi-home text_blue"></i> {{ user.address.country }} | {{ user.address.state }} | {{ user.address.address }}
+                    </div>
+                </span>
+                <span class="ms-auto">    
+                    <i class="pi pi-pen-to-square hover:surface-200 cursor-pointer p-2 rounded-circle"></i>
                 </span>
             </div>
+        </div>
+
+        <div class="card bg-light rounded-2 mt-2 p-3 text-def">
+            <div class="row">
+                <div class="col">
+                    <h6 class="text-500">Additional details</h6>
+                    <p>State: <span class="text_blue fw-medium">{{ user.address.state }}</span></p>
+                    <p>City: <span class="text_blue fw-medium">{{ user.address.city }}</span></p>
+                    <p>State Code: <span class="text_blue fw-medium">{{ user.address.stateCode }}</span></p>
+                    <p>Postal Code: <span class="text_blue fw-medium">{{ user.address.postalCode }}</span></p>
+                  
+                </div>
+
+                <div class="col">dwdwd</div>
+            </div>
+
         </div>
     }
 

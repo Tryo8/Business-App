@@ -38,7 +38,6 @@ import { BreadcrumbComponent } from "../../../layout/components/breadcrumb/bread
     FloatLabel,
     RoomComponent,
     SelectModule,
-    BreadcrumbComponent
 ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'

@@ -146,7 +146,6 @@ export class HomeComponent {
     this._salesService.getSales().subscribe({
       next: (res) => {
         this.salesInfo = res;
-        console.log(res);
       },
       error: (err) => {
         console.log('Error getting sales info:', err);
@@ -161,7 +160,6 @@ export class HomeComponent {
           ...a,
           images: [{ itemImageSrc: a.imageUrl, thumbnailImageSrc: a.imageUrl }]
         })) || [];
-        console.log(this.annoucments);
       },
       error: (err) => {
         console.log('Error getting annoucements', err);

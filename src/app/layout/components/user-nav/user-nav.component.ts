@@ -46,11 +46,13 @@ export class UserNavComponent {
 
     user: User | any = null;
     isLight = false;
+    isDark = false;
     navItems: MenuItem[] | undefined;
     userItems: MenuItem[] | undefined;
     usersDetails: User  | null = null;
     isThemeToggled: boolean = false;
-
+    themes = ['light-theme', 'grey-theme', 'dark-theme'];
+    currentThemeIndex = 0;
     ngOnInit() {
         this.user = this._user.getUser();
         console.log(this.user)
@@ -86,11 +88,32 @@ export class UserNavComponent {
                 routerLink: 'profile'                
             },
             {
-                label: 'Light',
+                label: 'Theme',
                 icon: 'pi pi-sun',
-                command: () => {
-                    this.toggleTheme()
-                }
+                items: [
+                    {
+                        label: 'Light',
+                        icon: 'pi pi-sun',
+                        command: () => {
+                            this.setLightTheme()
+                        }
+                    },
+                    {
+                        label: 'Dark',
+                        icon: 'pi pi-moon',
+                        command: () => {
+                            this.setDarkTheme()
+                        }
+                    },
+                    {
+                        label: 'Default',
+                        command: () => {
+                            this.clearThemes()
+                        }
+                    }
+
+
+                ]
             },
             {
                 separator: true,
@@ -107,41 +130,23 @@ export class UserNavComponent {
         
     }
 
-    toggleTheme() {
-        this.isLight = !this.isLight;
-        if (this.isLight) {
-            document.body.classList.add('light-theme');
-            this.isThemeToggled = !this.isThemeToggled
-            this.loadMenu()
-        } else {
-            document.body.classList.remove('light-theme');
-        }
-    };
-    loadMenu() {
-        this.userItems = [
-            {
-                label: 'Profile',
-                icon: 'pi pi-user',
-                routerLink: 'profile'                
-            },
-            {
-                label: 'Grey',
-                icon:'pi pi-moon',
-                command: () => this.toggleTheme()
-            },
-            {
-                separator: true,
-            },
-            {
-                label: 'Logout',
-                icon: 'pi pi-power-off',
-                style:{ 'color': 'red' },
-                command: ()=> {
-                    this.confirmLogout(event)
-                }
-            },
-        ];
+
+    private clearThemes() {
+        document.body.classList.remove('light-theme', 'grey-theme', 'dark-theme');
     }
+
+    setLightTheme() {
+        this.clearThemes();
+        document.body.classList.add('grey-theme');
+
+    }
+
+    setDarkTheme() {
+        this.clearThemes();
+        document.body.classList.add('dark-theme');
+
+    }
+
  
 
     confirmLogout(event: Event | any) {

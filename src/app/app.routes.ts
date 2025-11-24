@@ -34,6 +34,14 @@ export const routes: Routes = [
         ]
     },
     {
+        path: 'admin',
+        loadComponent: () => import('./layout/admin-layout/admin-layout.component')
+        .then((c) => c.AdminLayoutComponent),
+        title:"admin",
+        canActivate: [ authGuard ],
+
+    },
+    {
         path: 'user',
         loadComponent: () => import('./layout/user-layout/user-layout.component')
         .then((c) => c.UserLayoutComponent),
